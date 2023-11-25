@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ping-url
+  labels:
+    app: ping-url
+    tier: backend
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 5000
+  selector:
+    app: ping-url
+    tier: backend

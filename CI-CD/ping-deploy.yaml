@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ping-url
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+        app: ping-url
+        tier: backend
+  template:
+    metadata:
+      labels:
+        app: ping-url
+        tier: backend
+    spec:
+      containers:
+      - name: ping-url
+        image: ghcr.io/justowl/k8s-testing/ping-url:latest
+        env:
+        - name: GET_HOSTS_FROM
+          value: "dns"
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 5000
+      #imagePullSecrets:
+      #  - name: ghcr-credentials
+
+# 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
